@@ -1,0 +1,39 @@
+---
+services:
+  db:
+    image: poornapj/project:dbimage
+    ports:
+      - "3306:3306"
+    deploy:
+      replicas: 2
+
+
+  auth_service:
+    image: poornapj/project:authimage
+    ports:
+      - "5001"
+    deploy:
+      replicas: 2
+
+
+  book_service:
+    image: poornapj/project:bookimage
+    ports:
+      - "5002"
+    deploy:
+      replicas: 2
+
+
+  borrow_service:
+    image: poornapj/project:borrowimage
+    ports:
+      - "5003"
+    deploy:
+      replicas: 3
+
+  templates:
+    image: poornapj/project:templateimage
+    ports:
+      - "5000"
+    deploy:
+      replicas: 2
