@@ -28,7 +28,7 @@ services:
     deploy:
       replicas: 2
 
-  templates:
+  frontend:
     image: poornapj/pythonproject:templateimage
     ports:
       - "5000:5000"
