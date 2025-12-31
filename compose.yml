@@ -1,7 +1,7 @@
 ---
 services:
   db:
-    image: poornapj/project:dbimage
+    image: poornapj/pythonproject:dbimage
     ports:
       - "3306:3306"
     deploy:
@@ -9,7 +9,7 @@ services:
 
 
   auth_service:
-    image: poornapj/project:authimage
+    image: poornapj/pythonproject:authimage
     ports:
       - "5001"
     deploy:
@@ -17,7 +17,7 @@ services:
 
 
   book_service:
-    image: poornapj/project:bookimage
+    image: poornapj/pythonproject:bookimage
     ports:
       - "5002"
     deploy:
@@ -25,14 +25,14 @@ services:
 
 
   borrow_service:
-    image: poornapj/project:borrowimage
+    image: poornapj/pythonproject:borrowimage
     ports:
       - "5003"
     deploy:
       replicas: 3
 
   templates:
-    image: poornapj/project:templateimage
+    image: poornapj/pythonproject:templateimage
     ports:
       - "5000"
     deploy:
