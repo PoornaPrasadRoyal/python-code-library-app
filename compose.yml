@@ -1,0 +1,37 @@
+---
+version: "3"
+services:
+  db:
+    image: poornapj/pythonproject2:dbimage
+    ports:
+      - "3306:3306"
+    deploy:
+      replicas: 2
+
+  auth_service:
+    image: poornapj/pythonproject2:authimage
+    ports:
+      - "5001:5001"
+    deploy:
+      replicas: 3
+
+  book_service:
+    image: poornapj/pythonproject2:bookimage
+    ports:
+      - "5002:5002"
+    deploy:
+      replicas: 3
+
+  borrow_service:
+    image: poornapj/pythonproject2:borrowimage
+    ports:
+      - "5003:5003"
+    deploy:
+      replicas: 3
+
+  templates:
+    image: poornapj/pythonproject2:frontendimage
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 3
