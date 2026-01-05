@@ -1,17 +1,21 @@
----
-version: "3"
+version: "3.8"
+
 services:
   db:
     image: poornapj/pythonproject2:dbimage
     ports:
       - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
     deploy:
-      replicas: 2
+      replicas: 1   # IMPORTANT: DB should NOT have multiple replicas
 
   auth_service:
     image: poornapj/pythonproject2:authimage
     ports:
       - "5001:5001"
+    volumes:
+      - auth_logs:/app/logs
     deploy:
       replicas: 3
 
@@ -19,6 +23,8 @@ services:
     image: poornapj/pythonproject2:bookimage
     ports:
       - "5002:5002"
+    volumes:
+      - book_logs:/app/logs
     deploy:
       replicas: 3
 
@@ -26,6 +32,8 @@ services:
     image: poornapj/pythonproject2:borrowimage
     ports:
       - "5003:5003"
+    volumes:
+      - borrow_logs:/app/logs
     deploy:
       replicas: 3
 
@@ -34,7 +42,12 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - "db"
+      - db
     deploy:
       replicas: 3
 
+volumes:
+  db_data:
+  auth_logs:
+  book_logs:
+  borrow_logs:
