@@ -33,8 +33,8 @@ services:
     image: poornapj/pythonproject2:frontendimage
     ports:
       - "5000:5000"
-      depends_on:
-      - db
+    depends_on:
+      - "db"
     deploy:
       replicas: 3
 
