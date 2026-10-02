@@ -33,7 +33,7 @@ services:
     depends_on:
       - db
 
-borrow_service:
+  borrow_service:
     image: poornapj/library:borrowservice
     deploy:
       replicas: 1
