@@ -45,7 +45,7 @@ services:
       - db
 
 
-frontend:
+  frontend:
     image: poornapj/library:frontendservice
     deploy:
       replicas: 1
