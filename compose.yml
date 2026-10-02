@@ -1,0 +1,64 @@
+---
+services:
+  db:
+    image: poornapj/library:dbservice
+    deploy:
+      replicas: 1
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+
+  auth_service:
+    image: poornapj/library:authservice
+    deploy:
+      replicas: 1
+    ports:
+      - "5001:5001"
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+
+
+  book_service:
+    image: poornapj/library:bookservice
+    deploy:
+      replicas: 1
+    ports:
+      - "5002:5002"
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+
+borrow_service:
+    image: poornapj/library:borrowservice
+    deploy:
+      replicas: 1
+    ports:
+      - "5003:5003"
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+
+
+frontend:
+    image: poornapj/library:frontendservice
+    deploy:
+      replicas: 1
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+    depends_on:
+      - auth_service
+      - book_service
+      - borrow_service
+
+networks:
+  mynetwork:
+    driver: bridge
+                          
