@@ -1,7 +1,7 @@
 ---
 services:
   db:
-    image: poornapj/library:dbservice
+    image: poornapj/library2:database
     deploy:
       replicas: 1
     ports:
@@ -9,7 +9,7 @@ services:
 
 
   auth_service:
-    image: poornapj/library:authservice
+    image: poornapj/library2:authentication
     deploy:
       replicas: 1
     ports:
@@ -19,7 +19,7 @@ services:
 
 
   book_service:
-    image: poornapj/library:bookservice
+    image: poornapj/library2:books
     deploy:
       replicas: 1
     ports:
@@ -28,7 +28,7 @@ services:
       - db
 
   borrow_service:
-    image: poornapj/library:borrowservice
+    image: poornapj/library2:borrowbooks
     deploy:
       replicas: 1
     ports:
@@ -38,7 +38,7 @@ services:
 
 
   frontend:
-    image: poornapj/library:frontendservice
+    image: poornapj/library2:application
     deploy:
       replicas: 1
     ports:
